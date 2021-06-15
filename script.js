@@ -32,29 +32,29 @@ let balance;
               alert(`El total es igual a ${suma} pesos`);
       } while (precio != 0);
 
-          let abono = prompt("¿Con qué desea abonar? tarjeta o efectivo");
-           if (abono === "efectivo" && suma > 2000) {
+          let abono = parseInt(prompt("¿Con qué desea abonar?\n1.efectivo\n2.tarjeta"));
+           if (abono === 1 && suma > 2000) {
               descuento = suma * 0.05;
               suma = suma - descuento;
               alert(`El monto a pagar con descuento es de ${suma}`);}
-            else if (abono === "efectivo" && suma < 2000){
+            else if (abono === 1 && suma < 2000){
               alert(`El monto a pagar en efectivo sin descuento es de ${suma}`);
             }
-          if (abono === "efectivo" && suma > 5000) {
+          if (abono === 1 && suma > 5000) {
               descuento = suma * 0.10;
               suma = suma - descuento;
               alert(`El monto con descuento incluido es ${suma}`);
       }
-          else if ( abono === "tarjeta" && suma > 5000){
+          else if ( abono === 2 && suma > 5000){
               descuento= suma *0.10;
               tarjeta= suma-descuento;
               alert(`El monto a pagar con tarjeta con descuento es de ${tarjeta}`);
-            }else if ( abono === "tarjeta" && suma < 5000) {
+            }else if ( abono === 2 && suma < 5000) {
               tarjeta=suma;
               alert(`El monto a pagar con tarjeta sin descuento es ${tarjeta}`);
             }
           
-           if (abono === "efectivo") {
+           if (abono === 1) {
             pago = parseInt(prompt('¿Con cuánto quiere pagar?'));               
             if (pago >= suma) {
               vuelto = pago - suma;
@@ -87,12 +87,9 @@ let balance;
         }
       break;
     case 4:// monto total de las operaciones
-      monto = (parseInt(prompt("¿Que total de monto de operaciones quiere ver?\n1.Efectivo\n2.Tarjeta")));
-      if (balance===1) {
-          alert(`Se pago con efectivo una suma de ${suma} pesos`);
-        } else {
-          alert(`se pago con tarjeta un monto de ${tarjeta}`)
-        }
+     
+          alert(`El monto total de las operaciones es igual a ${suma} pesos`);
+       
         break;
     
       default:
