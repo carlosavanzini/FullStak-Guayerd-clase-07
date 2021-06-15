@@ -37,8 +37,8 @@ let balance;
               descuento = suma * 0.05;
               suma = suma - descuento;
               alert(`El monto a pagar con descuento es de ${suma}`);}
-            else{
-              alert(`El monto a pagar sin descuento es de ${suma}`);
+            else if (abono === "efectivo" && suma < 2000){
+              alert(`El monto a pagar en efectivo sin descuento es de ${suma}`);
             }
           if (abono === "efectivo" && suma > 5000) {
               descuento = suma * 0.10;
@@ -48,9 +48,12 @@ let balance;
           else if ( abono === "tarjeta" && suma > 5000){
               descuento= suma *0.10;
               tarjeta= suma-descuento;
-              alert(`El monto a pagar con descuento es ${tarjeta}`)
-              
-        }
+              alert(`El monto a pagar con tarjeta con descuento es de ${tarjeta}`);
+            }else if ( abono === "tarjeta" && suma < 5000) {
+              tarjeta=suma;
+              alert(`El monto a pagar con tarjeta sin descuento es ${tarjeta}`);
+            }
+          
            if (abono === "efectivo") {
             pago = parseInt(prompt('¿Con cuánto quiere pagar?'));               
             if (pago >= suma) {
@@ -67,7 +70,7 @@ let balance;
         totalEfectivoCaja = caja + suma;
         if (totalEfectivoCaja > retiro) {
                 retirocaja = totalEfectivoCaja - retiro;
-                alert(`Usted retiro${retiro} pesos y hora su saldo de caja es ${totalEfectivoCaja}`);
+                alert(`Usted retiro ${retiro} pesos y hora su saldo de caja es ${totalEfectivoCaja}`);
         }else{
                 alert(`Fondos insuficientes, usted quiso retirar ${retiro} y su fondo de caja es de ${totalEfectivoCaja}`);
         }
@@ -86,15 +89,15 @@ let balance;
     case 4:// monto total de las operaciones
       monto = (parseInt(prompt("¿Que total de monto de operaciones quiere ver?\n1.Efectivo\n2.Tarjeta")));
       if (balance===1) {
-        alert(`Se pago con efectivo una suma de ${suma} pesos`);
-      } else {
-        alert(`se pago con tarjeta un monto de ${tarjeta}`)
-      }
-      break;
-  
-    default:
-      alert("Gracias por usar Nuestro sistema");
-      break;
+          alert(`Se pago con efectivo una suma de ${suma} pesos`);
+        } else {
+          alert(`se pago con tarjeta un monto de ${tarjeta}`)
+        }
+        break;
+    
+      default:
+        alert("Gracias por usar Nuestro sistema");
+        break;
   }
   
 }
