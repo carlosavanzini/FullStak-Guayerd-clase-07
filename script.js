@@ -11,12 +11,62 @@
 // 3) Ver cuánto se pagó en tarjeta y cuánto se pagó en efectivo.
 // 4) Mostrar todos los montos de las operaciones (DE COMPRA, no retiros), tanto en tarjeta como en efectivo.
 // 5) Finaliza el programa.
- let suma=0;   
- let precio;         
-do{
-    precio = parseInt(prompt("ingrese los montos, si presiona 0 se terminara"))
-    suma = suma + precio;
-    console.log(suma)
-}while(precio!=0)
-
-let
+let suma=0;
+let precio;
+let menu;
+let pago;
+let vuelto;
+let caja = 2000;
+let retiro;
+let total;
+let condicion=1;
+    while(condicion===1){
+        menu = parseInt(prompt("¿Que operacion desea realizar?\n1.Cobrar\n2.Retirar dinero de la caja\n3.Ver balance de caja\n4.Ver los montos totales de todas las operaciones realizadas\n5.Salir"));
+  switch (menu) {
+    case 1:
+      do {
+        precio = parseInt(
+          prompt("Ingrese el precio del producto, para finalizar ingrese 0")
+        );
+        suma = suma + precio;
+        alert(suma);
+      } while (precio != 0);
+      let abono = prompt("¿Con qué desea abonar? tarjeta o efectivo");
+      if (abono === "efectivo" && suma > 2000) {
+        descuento = suma * 0.05;
+        suma = suma - descuento;
+        alert(suma);
+      } else if (abono === "efectivo" && suma > 5000 || abono === "tarjeta" && suma > 5000) {
+        descuento = suma * 0.1;
+        suma = suma - descuento;
+        alert(suma);
+      }if (abono === "efectivo") {
+               pago = parseInt(prompt('¿Con cuánto quiere pagar?'));
+               
+               if (pago >= suma) {
+                vuelto = pago - suma;
+                alert('Su vuelto es: ' + vuelto);              
+        }else{
+                alert('Su dinero No es sufiente');
+        }
+          
+               
+      }
+      break;    
+    case 2:
+        retiro = parseInt(prompt('¿Cuánto dinero desea retirar?'));
+        //total = caja + suma;
+        if (caja > retiro) {
+                total = caja - retiro;
+                alert(total);
+        }else{
+                alert('Fondos insuficientes');
+        }
+      break;    
+  
+    default:
+      alert("Operación inválida");
+      break;
+  }
+  condicion=parseInt(prompt("¿Desea realizar otra operacion? \n1.si\n2.no"))
+}
