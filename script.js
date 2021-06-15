@@ -20,7 +20,7 @@ let caja = 2000;
 let retiro;
 let total;
 let condicion=1;
-    while(condicion===1){
+    while(menu!=5){
         menu = parseInt(prompt("¿Que operacion desea realizar?\n1.Cobrar\n2.Retirar dinero de la caja\n3.Ver balance de caja\n4.Ver los montos totales de todas las operaciones realizadas\n5.Salir"));
   switch (menu) {
     case 1:
@@ -65,8 +65,8 @@ let condicion=1;
       break;    
   
     default:
-      alert("Operación inválida");
+      alert("Gracias por usar Nuestro sistema");
       break;
   }
-  condicion=parseInt(prompt("¿Desea realizar otra operacion? \n1.si\n2.no"))
+  
 }
