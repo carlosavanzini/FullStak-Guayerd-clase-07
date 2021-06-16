@@ -25,6 +25,7 @@ let efe=0;
 let totalVentasEfectivo=0;
 let totalVentasTarjeta=0;
 let totalEfectivoCaja=0;
+let descuentoEfectivo=0;
     while(menu!=5){ //pide los precios de los prodcutos que vamos a llevar
         menu = parseInt(prompt("¿Que operacion desea realizar?\n1.Cobrar\n2.Retirar dinero de la caja\n3.Ver balance de caja\n4.Ver los montos totales de todas las operaciones realizadas\n5.Salir"));
        
@@ -32,7 +33,6 @@ let totalEfectivoCaja=0;
           switch (menu) {
             case 1: // Cobrar
               do {
-                      
                       precio = parseInt(prompt("Ingrese el precio del producto, para finalizar ingrese 0"));
                       suma = suma + precio;
                       alert(`El total es igual a ${suma} pesos`);
@@ -41,19 +41,25 @@ let totalEfectivoCaja=0;
                   let abono = parseInt(prompt("¿Con qué desea abonar?\n1.efectivo\n2.tarjeta"));
                   if (abono===1) {
                       efectivo=suma;
+                      totalEfectivoCaja = efectivo+totalEfectivoCaja;
+                      totalVentasEfectivo=efectivo+totalVentasEfectivo;
                   }else if(abono===2){
                     tarjeta=suma;
+                    
                   }
-                  if (abono === 1 && efectivo > 2000) {
+                  totalVentasTarjeta=totalVentasTarjeta + tarjeta;
+                 
+                  
+                  if (abono === 1 && efectivo > 2000 && efectivo<=5000) {
                       descuento = efectivo * 0.05;
                       efectivo = efectivo - descuento;
                       alert(`El monto a pagar con descuento es de ${efectivo} pesos`);}
-                    else if (abono === 1 && efectivo < 2000){
+                    else if (abono === 1 && efectivo <=2000){
                       alert(`El monto a pagar en efectivo sin descuento es de ${efectivo}pesos`);
                     }
                   if (abono === 1 && efectivo > 5000) {
-                      descuento = efectivo * 0.10;
-                      efectivo = efectivo - descuento;
+                      descuentoEfectivo = efectivo * 0.10;
+                      efectivo = efectivo - descuentoEfectivo;
                       alert(`El monto con descuento incluido es ${efectivo}pesos`);
               }
                   else if ( abono === 2 && tarjeta > 5000){
@@ -79,11 +85,11 @@ let totalEfectivoCaja=0;
             case 2://retirar dinero de la caja
                 retiro = parseInt(prompt('¿Cuánto dinero desea retirar?'));
               
-                totalEfectivoCaja = efectivo+totalEfectivoCaja;
+               
                 if (totalEfectivoCaja > retiro) {
-                        retirocaja = totalEfectivoCaja - retiro;
+                        retirocaja = totalEfectivoCaja - retiro ;
                         alert(`Usted retiro ${retiro} pesos y hora su saldo de caja es ${retirocaja} pesos`);
-                }else{
+                }else {
                         alert(`Fondos insuficientes, usted quiso retirar ${retiro} y su fondo de caja es de ${totalEfectivoCaja} pesos`);
                 }
               break; 
@@ -91,10 +97,9 @@ let totalEfectivoCaja=0;
             case 3:// balance de caja
                 balance = (parseInt(prompt("Ver con que se pago:\n1.Efectivo\n2.Tarjeta")));
                 if (balance===1) {
-                  totalVentasEfectivo=efectivo+totalVentasEfectivo
-                  alert(`Se pago con efectivo una suma de ${totalVentasEfectivo} pesos`);
+                  alert(`Se pago con efectivo una suma de ${totalVentasEfectivo-descuentoEfectivo} pesos`);
                 }else if(balance===2 && tarjeta!=0) {
-                 totalVentasTarjeta=totalVentasTarjeta + tarjeta;
+                
                   alert(`se pago con tarjeta un monto de ${totalVentasTarjeta} pesos`)
                 } else{
                   alert("Por el momento no hay compras con tarjetas")
