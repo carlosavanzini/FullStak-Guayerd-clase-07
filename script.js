@@ -26,6 +26,7 @@ let totalVentasTarjeta=0;
 let totalEfectivoCaja=0;
 let descuentoEfectivo=0;
 let retiro=0;
+
     while(menu!=5){ //pide los precios de los prodcutos que vamos a llevar
         menu = parseInt(prompt("¿Que operacion desea realizar?\n1.Cobrar\n2.Retirar dinero de la caja\n3.Ver balance de caja\n4.Ver los montos totales de todas las operaciones realizadas\n5.Salir"));
        
@@ -87,8 +88,9 @@ let retiro=0;
                 break;    
             case 2://retirar dinero de la caja
                   retiro = parseInt(prompt('¿Cuánto dinero desea retirar?'));
-                   if (totalEfectivoCaja > retiro) {
-                      retirocaja = totalEfectivoCaja - retiro ;
+                   if (totalEfectivoCaja >= retiro) {
+                      retirocaja = totalEfectivoCaja - retiro  ;
+                      totalEfectivoCaja=retirocaja
                       alert(`Usted retiro ${retiro} pesos y hora su saldo de caja es ${retirocaja} pesos`);
                       }
                    else {
