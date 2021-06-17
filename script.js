@@ -19,22 +19,27 @@ let vuelto;
 let tarjeta=0;
 let monto;
 let balance;
-let efectivo=0
-let efe=0;
+let efectivo=0;
 let totalVentasEfectivo=0;
 let totalVentasTarjeta=0;
 let totalEfectivoCaja=0;
 let descuentoEfectivo=0;
 let retiro=0;
+let compras=[];
+let ver;
 
-    while(menu!=5){ //pide los precios de los prodcutos que vamos a llevar
-        menu = parseInt(prompt("¿Que operacion desea realizar?\n1.Cobrar\n2.Retirar dinero de la caja\n3.Ver balance de caja\n4.Ver los montos totales de todas las operaciones realizadas\n5.Salir"));
+    alert("BIENVENIDOS!!!")
+    while(menu!=5){ //pide los precios de los productos que vamos a llevar
+        menu = parseInt(prompt("¿Que operacion desea realizar?\n1.Cobrar\n2.Retirar dinero de la caja\n3.Ver balance de caja\n4.Montos de las operaciones de compras\n5.Salir"));
        
 
           switch (menu) {
             case 1: // Cobrar
               do {    //ingreso los precios del producto, hasta que el cajero ingrese 0
                       precio = parseInt(prompt("Ingrese el precio del producto, PARA FINALIZAR INGRESE 0 "));
+                      if (precio!=0) {
+                        compras.push(precio);
+                      }
                       suma = suma + precio;
                       alert(`El total es igual a ${suma} pesos`);
               } while (precio != 0);
@@ -111,7 +116,13 @@ let retiro=0;
                   }
               break;
             case 4:// monto total de las operaciones 
+                   ver = parseInt(prompt("Que desea Ver?\n1.Montos de las compras\n2.Montos totales de las compras efectivo mas tarjeta"));
+                  if (ver===1) {
+                    alert(`Las compras hasta el momentos son: ${compras}$`);
+                  }
+                 else{
                   alert(`El monto total de las operaciones tanto de compras en efectivo y compras con tarjeta  es igual a ${totalVentasEfectivo+totalVentasTarjeta} pesos`);
+                 } 
                break;
             
               default:
